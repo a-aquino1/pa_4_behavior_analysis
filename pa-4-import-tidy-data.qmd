@@ -9,8 +9,8 @@ execute:
 ```{r}
 #| label: setup
 #| include: false
-#library(tidyverse)  #load package of all the tidyverse packages
-#library(janitor)  #load the package from the video that cleans variable names
+library(tidyverse)  #load package of all the tidyverse packages
+library(janitor)  #load the package from the video that cleans variable names
 ## loaded the tidyverse and janitor package, before commenting them out.
 ```
 
@@ -71,10 +71,22 @@ Go ahead and read in the data, calling it `youth`. What do you notice?
 ```{r}
 #| label: read-data
 #| eval: false
-library(readr)
-youth <- read_csv("data-raw/YRBS2015.csv", skip = 1, na = c("N/A","."), col_types = list(AgeCat = col_number(), 
-Grade = col_character(), 
-Perception_of_Weight = factor(levels = c("Very underweight", "Slightly underweight", "About the right weight", "Slightly overweight", "Very overweight"))))
+
+youth <- read_csv("data-raw/YRBS2015.csv", 
+                  skip = 1, 
+                  na = c("N/A","."), 
+                  col_types = list(AgeCat = col_number(), 
+                                   Grade = col_number(), 
+                                   `Perception of weight` = col_factor(levels = c("Very underweight", 
+                                                                            "Slightly underweight", 
+                                                                            "About the right weight", 
+                                                                            "Slightly overweight", 
+                                                                            "Very overweight")),
+                                   Gender = "c",
+                                   `Height in meters` = col_double(),
+                                   .default = col_skip()
+                                   )
+                  )
   
 ##moved the data into the data-raw file, later added the skip 1 
 ```
