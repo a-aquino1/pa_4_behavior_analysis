@@ -83,7 +83,10 @@ youth <- read_csv("data-raw/YRBS2015.csv",
                                                                             "Slightly overweight", 
                                                                             "Very overweight")),
                                    Gender = "c",
-                                   `Height in meters` = col_double(),
+                                   `Height in meters` = "d",
+                                   `Weight in kilograms` = "d",
+                                   `Body Mass Index` = "d",
+                                   `BMI percentile` = "i",
                                    .default = col_skip()
                                    )
                   )
